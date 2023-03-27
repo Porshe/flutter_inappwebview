@@ -61,6 +61,9 @@ import java.util.Map;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 
+import android.view.MotionEvent;
+import android.os.SystemClock;
+
 public class WebViewChannelDelegate extends ChannelDelegateImpl {
   static final String LOG_TAG = "WebViewChannelDelegate";
   
@@ -84,6 +87,17 @@ public class WebViewChannelDelegate extends ChannelDelegateImpl {
     switch (method) {
       case getUrl:
         result.success((webView != null) ? webView.getUrl() : null);
+        break;
+      case dispatchTouchEventTap:
+        if (webView != null) {
+          MotionEvent event = MotionEvent.obtain(SystemClock.uptimeMillis(),
+                  SystemClock.uptimeMillis() + 100, MotionEvent.ACTION_DOWN, 1, 1, 0);
+          webView.dispatchTouchEvent(event);
+          event = MotionEvent.obtain(SystemClock.uptimeMillis(),
+                  SystemClock.uptimeMillis() + 100, MotionEvent.ACTION_UP, 1, 1, 0);
+          webView.dispatchTouchEvent(event);
+        }
+        result.success(true);
         break;
       case getTitle:
         result.success((webView != null) ? webView.getTitle() : null);

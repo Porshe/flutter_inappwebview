@@ -1422,6 +1422,12 @@ class InAppWebViewController {
     return await _channel.invokeMethod('getTitle', args);
   }
 
+  ///Dispatch Touch Event Tap hack
+  Future<bool> dispatchTouchEventTap() async {
+    Map<String, dynamic> args = <String, dynamic>{};
+    return await _channel.invokeMethod('dispatchTouchEventTap', args);
+  }
+
   ///Gets the progress for the current page. The progress value is between 0 and 100.
   ///
   ///**Supported Platforms/Implementations**:

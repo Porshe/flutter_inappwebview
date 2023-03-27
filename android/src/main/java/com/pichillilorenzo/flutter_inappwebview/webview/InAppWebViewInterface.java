@@ -25,11 +25,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.view.MotionEvent;
+
 import io.flutter.plugin.common.MethodChannel;
 
 public interface InAppWebViewInterface {
   Context getContext();
   String getUrl();
+  boolean dispatchTouchEvent(MotionEvent event);
   String getTitle();
   int getProgress();
   void loadUrl(URLRequest urlRequest);
