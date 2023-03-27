@@ -2,6 +2,7 @@ package com.pichillilorenzo.flutter_inappwebview.webview;
 
 public enum WebViewChannelDelegateMethods {
   getUrl,
+  dispatchTouchEventTap,
   getTitle,
   getProgress,
   loadUrl,
